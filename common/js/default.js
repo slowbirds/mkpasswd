@@ -1,10 +1,3 @@
-/*#####################################
-# default functions
-# since:	05.19.2008
-# modified: 05.19.2008
-# edited:   akato
-#####################################*/
-
 //window.event for cross browser
 function windowEventX() {
 	if(window.attachEvent && document.getElementById) return;//not for ie
