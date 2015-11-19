@@ -6,31 +6,6 @@ class Mkpasswd
     if !(this.args.symbols < 10)
       this.args.symbols = 5
 
-  ###
-  # Utility funxtions
-  ###
-  $id: (id)->
-    return document.getElementById id
-
-  $event: (target, event, func) ->
-    this.$id(target).addEventListener event , (e) =>
-        func(e)
-    return
-
-  getJson: (url,callback) ->
-    xhr = new XMLHttpRequest()
-    xhr.open 'GET', url
-
-    xhr.onreadystatechange = ()->
-      if xhr.readyState == 4 && xhr.status == 200
-        callback xhr.responseText
-      else if xhr.readyState == 4 && xhr.status != 200
-        error xhr.status
-      return this
-
-    xhr.send()
-    return this
-
   make: (jsonParsed, lengthSetting, stringType)->
     returnRandStrings = ""
     lengthSetting = lengthSetting - 0
