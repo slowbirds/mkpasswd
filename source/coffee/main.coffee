@@ -1,5 +1,5 @@
 Mkpasswd = require "./mkpasswd"
-mkpasswd = new Mkpasswd()
+mkpasswd = new Mkpasswd({symbols:5})
 
 Help = require "./helper"
 help = new Help()
@@ -34,9 +34,12 @@ makeStrTypeSelecta = ()->
 makeForm = ()->
   return '<form action="#" method="get" id="makeRandInput"></form>'
 
+remakeButton = ()->
+  return '<button type="submit">remake</button>'
+
 putHTML = ()->
   help.$id(config.target).innerHTML = makeForm()
-  inputs = makeLengthList() + makeStrTypeSelecta()
+  inputs = makeLengthList() + makeStrTypeSelecta() + remakeButton()
   help.$id("makeRandInput").innerHTML = inputs
   child = document.createElement("p")
   child.innerHTML = '<textarea id="randStringResult">password here</textarea>'
