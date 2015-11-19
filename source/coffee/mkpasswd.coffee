@@ -18,8 +18,6 @@ class Mkpasswd
 
       if stringType == "mix_case" && Math.floor(Math.random()*this.args.symbols) == 0
         jsonStr = jsonParsed.symbols[rand1]
-        if typeof(jsonStr) == "undefined"
-          console.log rand1
       # cases
       if stringType == "upper"
         jsonStr = jsonStr.toUpperCase()
