@@ -8,7 +8,7 @@ class Helper
   $event: (target, event, func) ->
     this.$id(target).addEventListener event , (e) =>
         func(e)
-    return
+    return this
 
   getJson: (url,callback) ->
     xhr = new XMLHttpRequest()
