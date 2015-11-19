@@ -1,6 +1,10 @@
 class Mkpasswd
 
-  constructor: (args)->
+  constructor: (@args)->
+    if typeof(this.args) == "undefined"
+      this.args = {}
+    if !(this.args.symbols < 10)
+      this.args.symbols = 5
 
   ###
   # Utility funxtions
@@ -37,7 +41,7 @@ class Mkpasswd
       rand1 = Math.floor(Math.random() * 10)
       jsonStr = (jsonParsed.strings[rand0])[rand1]
 
-      if stringType == "mix_case" && Math.floor(Math.random()*5) == 0
+      if stringType == "mix_case" && Math.floor(Math.random()*this.args.symbols) == 0
         jsonStr = jsonParsed.symbols[rand1]
         if typeof(jsonStr) == "undefined"
           console.log rand1
