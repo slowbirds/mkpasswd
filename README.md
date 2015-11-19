@@ -24,3 +24,5 @@ $ npm --version
 
 ## core source
 /source/coffee/mkpasswd.coffee
+
+![screenshot](https://github.com/slowbirds/mkpasswd/blob/b83889f3ff2e121f0f9bc09cff89564f8662ece1/resources/mkpasswd.png)
