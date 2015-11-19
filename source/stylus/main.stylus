@@ -1,0 +1,21 @@
+body
+  font-size: 92%
+
+
+select
+  width: auto
+  min-width: 3rem
+  border: solid 1px #aaa
+label
+  padding: 0 0.5rem
+button
+  border: solid 1px #aaa
+  background: #fff
+  margin: 0 0.5rem
+textarea
+  width: 90%
+  max-width: 500px
+  margin: 0 auto
+  height: 5rem
+  border: solid 1px #aaa
+  padding: 0.5rem
