@@ -9,7 +9,6 @@ config = {
   length: [4,5,6,8,12,14,15,16,24,32,48]
   target: "contents"
 }
-jsonParsed = {};
 
 ###
 # Views
@@ -48,17 +47,17 @@ putHTML = ()->
 ###
 # controllers
 ###
-formEventHandlr = ()->
+formEventHandlr = (json)->
   event = new Event('submit',{
     'bubbles': true
     'cancelable': true
   })
 
   help.$event "makeRandInput", "submit", (e)->
-    e.preventDefault();
+    e.preventDefault()
     lengthSetting = help.$id("lengthList").value
     stringType    = help.$id("strType").value
-    randomString  = mkpasswd.make(jsonParsed, lengthSetting,stringType)
+    randomString  = mkpasswd.make(json, lengthSetting,stringType)
     putRandomString(randomString)
 
   help.$event "lengthList", "change", ()->
@@ -70,14 +69,12 @@ formEventHandlr = ()->
 putRandomString = (randomString) ->
   help.$id("randStringResult").value = randomString
 
-successFunc = (jsonData) ->
-  jsonParsed = JSON.parse(jsonData)
+successFunc = (json) ->
   putHTML()
-  formEventHandlr()
+  formEventHandlr(json)
 
 ###
 # init
 ###
-help.getJson config.json,(json)->
-  jsonData = json
-  successFunc(jsonData)
+mkpasswd.get config.json, (json)->
+  successFunc(json)

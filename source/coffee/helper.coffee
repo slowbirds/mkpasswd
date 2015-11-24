@@ -10,9 +10,12 @@ class Helper
         func(e)
     return this
 
-  getJson: (url,callback) ->
+  getJson: (url,callback,error) ->
     xhr = new XMLHttpRequest()
     xhr.open 'GET', url
+    if typeof(error) == "undefined"
+      error = (mes)->
+        console.log mes
 
     xhr.onreadystatechange = ()->
       if xhr.readyState == 4 && xhr.status == 200

@@ -39,6 +39,12 @@
     "gulp-watch": "^4.3.5",
     "gulp-webserver": "^0.9.1",
     "jade": "^1.11.0",
+    "karma": "^0.13.15",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-cli": "^0.1.1",
+    "karma-coffee-preprocessor": "^0.3.0",
+    "karma-mocha": "^0.2.1",
+    "sinon": "^1.17.2",
     "stylus": "^0.52.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
