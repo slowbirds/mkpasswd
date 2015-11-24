@@ -22,6 +22,9 @@ streamify  = require 'gulp-streamify'
 sourcemaps = require 'gulp-sourcemaps'
 pleeease   = require 'gulp-pleeease'
 
+mocha      = require 'gulp-mocha'
+gutil      = require 'gulp-util'
+
 pub_dir    = 'app/public'
 
 srcdata = {
@@ -31,6 +34,7 @@ srcdata = {
   'bower'    : ['dev/vendors/**/*','bower_components/**/*']
   'vendorjs' : 'source/javascript/**/*'
   'resource' : 'source/resource/**/*'
+  'tests'    : 'source/coffee/tests/**/*.test.coffee'
 }
 
 gulp.task 'compile-js', () ->
@@ -92,7 +96,12 @@ gulp.task 'webserver', () ->
   gulp.src pub_dir
     .pipe server(livereload:true)
 
+gulp.task 'test', () ->
+  gulp.src srcdata.tests, {read:false}
+    .pipe mocha reporter: 'list'
+  #mocha --compilers coffee:coffee-script/register source/coffee/tests
 gulp.task 'compile', [
+  'test'
   'compile-js'
   'compile-css'
   'compile-html'
@@ -101,6 +110,8 @@ gulp.task 'compile', [
   'move-resources'
 ]
 gulp.task 'watch', () ->
+  gulp.watch srcdata.tests, ['test']
+  gulp.watch srcdata.coffee, ['test']
   gulp.watch srcdata.stylus, ['compile-css']
   gulp.watch srcdata.coffee, ['compile-js']
   gulp.watch srcdata.jade, ['compile-html']

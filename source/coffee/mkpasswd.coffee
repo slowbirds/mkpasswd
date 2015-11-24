@@ -36,32 +36,37 @@ class Mkpasswd
       return false
     return true
 
-  make: (json, lengthSetting, stringType)->
+  rand: (json, type)->
+    # make random from 0-9
+    rand0 = Math.floor(Math.random() * 10)
+    rand1 = Math.floor(Math.random() * 10)
+    jsonStr = (json.strings[rand0])[rand1]
+
+    if type == "mix_case" && Math.floor(Math.random()*this.symbols) == 0
+      jsonStr = json.symbols[rand1]
+    # cases
+    if type == "upper"
+      jsonStr = jsonStr.toUpperCase()
+    else if type == "lower"
+      jsonStr = jsonStr.toLowerCase()
+
+    return jsonStr
+
+  make: (json, lengthSetting, type)->
+    password = ""
+
+    # parse if need
     if typeof json == "string"
       json = JSON.parse json
+
+    # easy check json
     if !(this.check(json))
-      return false
-    returnRandStrings = ""
-    lengthSetting = lengthSetting - 0
-    count = 0
-    loop
-      # make random from 0-9
-      rand0 = Math.floor(Math.random() * 10)
-      rand1 = Math.floor(Math.random() * 10)
-      jsonStr = (json.strings[rand0])[rand1]
+      return null
 
-      if stringType == "mix_case" && Math.floor(Math.random()*this.symbols) == 0
-        jsonStr = json.symbols[rand1]
-      # cases
-      if stringType == "upper"
-        jsonStr = jsonStr.toUpperCase()
-      else if stringType == "lower"
-        jsonStr = jsonStr.toLowerCase()
+    # make!!
+    for i in [0..lengthSetting-1]
+      password += this.rand(json, type)
 
-      returnRandStrings += jsonStr
-      if ++count >= lengthSetting
-        break
-
-    return returnRandStrings
+    return password
 
 module.exports = Mkpasswd
