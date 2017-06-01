@@ -3,6 +3,10 @@
 make random passwd from setting strings
 you can choose what str use for password
 
+oooooooooooooooooooooooooooo
+aaaaaaaaaaaaaaaaaaaaaaaaaa
+
+
 # require
 ```
 $ node --version
